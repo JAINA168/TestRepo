@@ -61,7 +61,7 @@ pipeline {
                         unix_deploy(src: unix_src_path1, dest: unix_dest_path1, server: unix_server, service_account: unix_service_account, permissions: unix_permission)
                         unix_deploy(src: unix_src_path2, dest: unix_dest_path2, server: unix_server, service_account: unix_service_account, permissions: unix_permission)
                         
-                        //Adhoc commands for file permissions
+                        //Adhoc commands for file permissions.
                         // Add the code if needed.
                         }
                 }
