@@ -55,7 +55,7 @@ pipeline {
                     script{
                         def unix_permission = '775'
                         if (env.BRANCH_NAME == 'main'){
-                            unix_permission = '755'
+                            unix_permission = '775'
                         }
                         //scripts files deployment 
                         unix_deploy(src: unix_src_path1, dest: unix_dest_path1, server: unix_server, service_account: unix_service_account, permissions: unix_permission)
