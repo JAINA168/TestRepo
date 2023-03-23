@@ -4,11 +4,11 @@ pipeline {
     agent any
     environment {
         //unix server details
-        unix_server = "${getProperty("${env.BRANCH_NAME}_repl_unix_server")}"
+        unix_server = "10.90.82.9"
         unix_src_path1 = "unix/scripts"
-        unix_dest_path1 = "/app/etl/repl/scripts"
+        unix_dest_path1 = "/tmp/scripts"
         unix_src_path2 = "unix/parameter_files"
-        unix_dest_path2 = "/app/etl/repl/parameter_files"
+        unix_dest_path2 = "/tmp/parameter_files"
         unix_service_account = "srvamr-sfaops"
         //snowflake changelog file details
         snowflake_changeLogFile_COMETL_CONTROL_db = "snowflake/COMETL_CONTROL/changelog.sf.xml"
