@@ -1,0 +1,7 @@
+Jul 05 07:26:36 euw1j1pl001 systemd[1]: Starting The nginx HTTP and reverse proxy server...
+Jul 05 07:26:36 euw1j1pl001 nginx[3048819]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+Jul 05 07:26:36 euw1j1pl001 nginx[3048819]: nginx: [emerg] socket() [::]:80 failed (97: Address family not supported by protocol)
+Jul 05 07:26:36 euw1j1pl001 nginx[3048819]: nginx: configuration file /etc/nginx/nginx.conf test failed
+Jul 05 07:26:36 euw1j1pl001 systemd[1]: nginx.service: Control process exited, code=exited status=1
+Jul 05 07:26:36 euw1j1pl001 systemd[1]: nginx.service: Failed with result 'exit-code'.
+Jul 05 07:26:36 euw1j1pl001 systemd[1]: Failed to start The nginx HTTP and reverse proxy server.
