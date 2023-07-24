@@ -22,7 +22,7 @@ pipeline {
                 steps{
                     script{
         	      sh "scp -i /var/lib/jenkins/.ssh/id_rsa -r test1.py srvamr-sfaops@amer@amraelp00011593:/tmp"
-		      sh "ssh -i /var/lib/jenkins/.ssh/id_rsa srvamr-sfaops@amer@amraelp00011593 'sudo chmod 775 /tmp*'"
+		      sh "ssh -i /var/lib/jenkins/.ssh/id_rsa srvamr-sfaops@amer@amraelp00011593 'sudo chmod 775 /tmp/test1.py'"
 		
 		    }
                 }
