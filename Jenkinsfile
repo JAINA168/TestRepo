@@ -34,7 +34,7 @@ pipeline {
 			sh "ssh -i /var/lib/jenkins/.ssh/palign_id_rsa srvamr-palign@amer@amraelp00011593 'sudo chmod 755 /app/etl/palign/scripts/scripts_ui/python_scripts/*'"
 			    //testing /home/srvamr-palign/.snowsql
 			sh "scp -i /var/lib/jenkins/.ssh/palign_id_rsa -r test1.py srvamr-palign@amer@amraelp00011593:/home/srvamr-palign/.snowsql/"
-			sh "ssh -i /var/lib/jenkins/.ssh/palign_id_rsa srvamr-palign@amer@amraelp00011593 'sudo chmod 755 /home/srvamr-palign/.snowsqls/*'"
+			sh "ssh -i /var/lib/jenkins/.ssh/palign_id_rsa srvamr-palign@amer@amraelp00011593 'sudo chmod 755 /home/srvamr-palign/.snowsql/*'"
 		    }
                 }
         }
