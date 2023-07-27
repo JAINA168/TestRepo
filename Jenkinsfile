@@ -44,7 +44,7 @@ pipeline {
                  expression { params.Deploy_to_Autosys == "Yes" }
             }
             steps{		
-		        sh 'curl -X POST -H 'Content-Type: text/plain' --upload-file "${jilFile}" ${autosys_apiEndpoint} -k --user "srvamr-sfaops:0wO:v%He[a;_HzdFYkyKwS34g" -i	'		
+		        sh 'curl -X POST -H "Content-Type: text/plain" --upload-file "${jilFile}" ${autosys_apiEndpoint} -k --user "srvamr-sfaops:0wO:v%He[a;_HzdFYkyKwS34g" -i	'		
 		        }
             }
 				
