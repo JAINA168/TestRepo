@@ -25,7 +25,7 @@ pipeline {
 			//sh "ssh -i /var/lib/jenkins/.ssh/id_rsa srvamr-sfaops@amer@amraelp00011593 'sudo chmod 755 /tmp/test1.py'"
 				//testing /app/etl/palign/scripts/
 			   // scp -i /var/lib/jenkins/.ssh/id_rsa -r ./python_scripts/batch_configurations.ini ./python_scripts/batch_process.py srvamr-sfaops@amer@amraelp00011593:/app/etl/palign/scripts/scripts_ui/python_scripts
-			sh "scp -i /var/lib/jenkins/.ssh/id_rsa -r test1.py srvamr-sfaops@amer@amraelp00011593:/app/etl/palign/scripts/scripts_ui/python_scripts/"
+			sh "scp -i /var/lib/jenkins/.ssh/id_rsa -r test1.py srvamr-sfaops@amer@amraelp00011593:/app/etl/palign/scripts/scripts_ui/python_scripts"
 			sh "ssh -i /var/lib/jenkins/.ssh/id_rsasrvamr-sfaops@amer@amraelp00011593 'sudo chmod 755 /app/etl/palign/scripts/scripts_ui/python_scripts/*'"
 			    //testing /app/etl/palign/parameter_files/
 			//sh "scp -i /var/lib/jenkins/.ssh/palign_id_rsa -r test1.py srvamr-palign@amer@amraelp00011593:/app/etl/palign/parameter_files/"
