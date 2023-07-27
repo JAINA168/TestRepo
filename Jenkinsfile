@@ -3,9 +3,9 @@
 pipeline {
     agent any
     environment{
- 	autosys_main_server= 'amraelp00011108'
+ 	autosys_main_server= 'amraelp00011593'
 	jilDirectory='autosys/'
-	apiEndpoint='https://amraelp00011055.pfizer.com:9443/AEWS/jil'
+	apiEndpoint='https://amraelp00011107.pfizer.com:9443/AEWS/jil'
     }
     parameters {
         //choice choices: ['No', 'Yes'], description: 'Mention if You want to Deploy into Autosys Environment', name: 'Deploy_to_Autosys'
@@ -39,8 +39,17 @@ pipeline {
 		    }
                 }
         }
-            
+        stage ("Deploy to Autosys"){
+            when {
+                 expression { params.Deploy_to_Autosys == "Yes" }
+            }
+            steps{		
+		        sh 'curl -X POST -H 'Content-Type: text/plain' --upload-file "${jilFile}" ${autosys_apiEndpoint} -k --user "${USERNAME}:${PASSWORD}" -i	'		
+		        }
+            }
 				
-        }
+        }   
+				
+        
     }
 
