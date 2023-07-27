@@ -4,7 +4,7 @@ pipeline {
     agent any
     environment{
  	autosys_main_server= 'amraelp00011593'
-	jilDirectory='autosys/'
+	jilDirectory='autosys/P2COMPAUS_PA_DUMMY_BOX.jil'
 	autosys_apiEndpoint='https://amraelp00011107.pfizer.com:9443/AEWS/jil'
     }
     parameters {
