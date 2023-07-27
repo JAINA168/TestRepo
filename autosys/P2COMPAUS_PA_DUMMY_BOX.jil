@@ -16,7 +16,7 @@ alarm_if_terminated: 0
 insert_job: p2compaus_pa_dummy_job   job_type: CMD 
 box_name: P2COMPAUS_PA_DUMMY_BOX
 command: $$(P2COMPAUS_GV_PA_SCRIPT_PATH)/pa_postgresql_master.ksh PALIGN PROD BATCH_UPLOAD_DRYRUN FUNCTION "'SUCCESS'"
-machine: AMRAELP00011593
+machine: amraelp000111593
 owner: SRVAMR-PALIGN
 permission: me,mx,ge,gx
 date_conditions: 0
@@ -32,7 +32,7 @@ success_codes: 0,14
 insert_job: p2compaus_pa_dummy_job1   job_type: CMD 
 box_name: P2COMPAUS_PA_DUMMY_BOX
 command: $$(P2COMPAUS_GV_PA_SCRIPT_PATH)/pa_postgresql_master.ksh PALIGN PROD BATCH_UPLOAD_DRYRUN FUNCTION "'FAILURE'"
-machine: AMRAELP00011593
+machine: amraelp000111593
 owner: SRVAMR-PALIGN
 permission: me,mx,ge,gx
 date_conditions: 0
