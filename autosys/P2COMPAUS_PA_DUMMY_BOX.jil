@@ -1,4 +1,4 @@
-#delete_box : P2COMPAUS_PA_DUMMY_BOX
+delete_box : P2COMPAUS_PA_DUMMY_BOX
 
 insert_job: P2COMPAUS_PA_DUMMY_BOX   job_type: BOX 
 owner: SRVAMR-PALIGN
