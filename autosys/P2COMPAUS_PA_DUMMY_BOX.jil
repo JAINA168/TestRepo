@@ -13,34 +13,3 @@ description: "JOB BOX FOR testing deployment"
 alarm_if_fail: 0
 alarm_if_terminated: 0
 
-insert_job: p2compaus_pa_dummy_job   job_type: CMD 
-box_name: P2COMPAUS_PA_DUMMY_BOX
-command: $$(P2COMPAUS_GV_PA_SCRIPT_PATH)/pa_postgresql_master.ksh PALIGN PROD BATCH_UPLOAD_DRYRUN FUNCTION "'SUCCESS'"
-machine: amraelp00011593
-owner: SRVAMR-PALIGN
-permission: me,mx,ge,gx
-date_conditions: 0
-description: "this job will succeed"
-std_out_file: "$$(P2COMPAUS_GV_PA_LOG_PATH)/$AUTO_JOB_NAME.out"
-std_err_file: "$$(P2COMPAUS_GV_PA_LOG_PATH)/$AUTO_JOB_NAME.err"
-alarm_if_fail: 1
-alarm_if_terminated: 0
-group: SMP#P3
-application: SMQ#PFIZER_ALIGN.SMC#DEFAULT
-success_codes: 0,14
-
-insert_job: p2compaus_pa_dummy_job1   job_type: CMD 
-box_name: P2COMPAUS_PA_DUMMY_BOX
-command: $$(P2COMPAUS_GV_PA_SCRIPT_PATH)/pa_postgresql_master.ksh PALIGN PROD BATCH_UPLOAD_DRYRUN FUNCTION "'FAILURE'"
-machine: amraelp00011593
-owner: SRVAMR-PALIGN
-permission: me,mx,ge,gx
-date_conditions: 0
-description: "this job will fail"
-std_out_file: "$$(P2COMPAUS_GV_PA_LOG_PATH)/$AUTO_JOB_NAME.out"
-std_err_file: "$$(P2COMPAUS_GV_PA_LOG_PATH)/$AUTO_JOB_NAME.err"
-alarm_if_fail: 1
-alarm_if_terminated: 0
-group: SMP#P3
-application: SMQ#PFIZER_ALIGN.SMC#DEFAULT
-success_codes: 0,14
