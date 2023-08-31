@@ -6,6 +6,7 @@ pipeline {
  	autosys_main_server= 'amraelp00011593'
 	jilDirectory='autosys/P2COMPAUS_PA_DUMMY_BOX.jil'
 	autosys_apiEndpoint='https://amraelp00011055.pfizer.com:9443/AEWS/jil'
+	dry_run = params.dry_run    
     }
     parameters {
         choice choices: ['No', 'Yes'], description: 'Mention if You want to Deploy into Autosys Environment', name: 'Deploy_to_Autosys'
@@ -27,7 +28,7 @@ pipeline {
             			env.PASSWORD = sh(script: "echo \$PASSWORD", returnStdout: true).trim()
             			env.USERNAME = sh(script: "echo \$USERNAME", returnStdout: true).trim()
         		    } 	
-			    sh "dry_run=${params.dry_run} devops_scripts/autosys_deploy.sh" // Set the environment variable			
+			    sh "devops_scripts/autosys_deploy.sh" 			
 		        }
             }	
         }
