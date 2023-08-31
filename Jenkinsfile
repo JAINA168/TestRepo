@@ -15,16 +15,6 @@ pipeline {
     stages{
         
         
-	 stage ("Deploy to Unix"){
-            when {
-                 expression { params.Deploy_to_Unix == "Yes" }
-            }
-                steps{
-                    script{
-  
-					}
-                }
-        }
         stage ("Deploy to Autosys"){
             when {
                  expression { params.Deploy_to_Autosys == "Yes" }
