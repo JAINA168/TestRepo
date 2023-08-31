@@ -2,7 +2,7 @@
 
 failedFiles=() # Array to store failed JIL files
 successfulFiles=() # Array to store successful JIL files
-
+dryRun=true
 USERNAME="${USERNAME}"
 PASSWORD="${PASSWORD}"
 
@@ -16,6 +16,10 @@ jilFiles=$(find ${jilDirectory} -name '*.jil')
 # Iterate over the JIL files and make POST requests
 for jilFile in ${jilFiles}; do
     echo "Processing file: ${jilFile}"
+    if [ "${dryRun}" = true ]; then
+        echo "Dry run completed. No changes were made."
+        exit 0 # Exit with a successful status since this was just a dry run
+    fi
     if [ "${target_branch}" = "test" ]; then
         # Replace string in the JIL file for the "test" branch
         sed -i 's/d2compaus/t2compaus/g' "${jilFile}"
