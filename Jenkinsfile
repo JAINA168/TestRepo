@@ -27,7 +27,7 @@ pipeline {
             			env.PASSWORD = sh(script: "echo \$PASSWORD", returnStdout: true).trim()
             			env.USERNAME = sh(script: "echo \$USERNAME", returnStdout: true).trim()
         		    } 	
-			    sh 'devops_scripts/autosys_deploy.sh'			
+			    sh "devops_scripts/autosys_deploy.sh ${params.dry_run}" // Pass dry_run parameter			
 		        }
             }	
         }
