@@ -4,7 +4,7 @@ failedFiles=() # Array to store failed JIL files
 successfulFiles=() # Array to store successful JIL files
 
 # Access the dry_run parameter as the first command-line argument ($1)
-dryRun="$1"
+dryRun="${dryrun}"
 
 USERNAME="${USERNAME}"
 PASSWORD="${PASSWORD}"
