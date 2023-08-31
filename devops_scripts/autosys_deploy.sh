@@ -19,7 +19,7 @@ jilFiles=$(find ${jilDirectory} -name '*.jil')
 # Iterate over the JIL files and make POST requests
 for jilFile in ${jilFiles}; do
     echo "Processing file: ${jilFile}"
-    if [ "${dryRun}" = true ]; then
+    if [ "${dryRun}" = yes ]; then
         echo "Dry run completed. No changes were made."
         exit 0 # Exit with a successful status since this was just a dry run
     fi
