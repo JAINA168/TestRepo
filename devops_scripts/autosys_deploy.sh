@@ -12,15 +12,29 @@ PASSWORD="${PASSWORD}"
 target_branch=${GIT_BRANCH}
 echo "Target branch is: ${target_branch}"
 
+if [ "${dry_run}" = "yes" ]; then
+    echo "Dry run is enabled. Listing files in the Autosys folder:"
+    
+    # List files in the Autosys folder
+    files_in_autosys_folder=$(find "${jilDirectory}" -name '*.jil')
+    for file in ${files_in_autosys_folder}; do
+        echo "${file}"
+    done
+    
+    # Exit with a successful status
+    exit 0
+fi
+
 # Get a list of JIL files in the directory
 jilFiles=$(find "${jilDirectory}" -name '*.jil')
+
 
 # Iterate over the JIL files and make POST requests
 for jilFile in ${jilFiles}; do
     echo "Processing file: ${jilFile}"
-    if [ "${dry_run}" = "Yes" ]; then
-        echo "Dry run completed. No changes were made."
-    else
+    #if [ "${dry_run}" = "Yes" ]; then
+    #    echo "Dry run completed. No changes were made."
+    #else
         if [ "${target_branch}" = "test" ]; then
 			# Replace string in the JIL file for the "test" branch
 			sed -i 's/d2compaus/t2compaus/g' "${jilFile}"
@@ -108,7 +122,6 @@ for jilFile in ${jilFiles}; do
             echo "Unable to determine the status from the response"
             failedFiles+=("${jilFile}") # Assume failure if status extraction fails
         fi
-    fi
 done
 
 if [ ${#failedFiles[@]} -gt 0 ]; then
