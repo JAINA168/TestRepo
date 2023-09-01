@@ -5,7 +5,7 @@ successfulFiles=() # Array to store successful JIL files
 
 # Access the dry_run parameter as the first command-line argument ($1)
 dry_run="${dry_run}"
-
+echo "Dry run is  is : ${dry_run}"
 USERNAME="${USERNAME}"
 PASSWORD="${PASSWORD}"
 
@@ -19,7 +19,7 @@ jilFiles=$(find ${jilDirectory} -name '*.jil')
 # Iterate over the JIL files and make POST requests
 for jilFile in ${jilFiles}; do
     echo "Processing file: ${jilFile}"
-    if [ "${dry_run}" = yes ]; then
+    if [ "${dry_run}" = Yes ]; then
         echo "Dry run completed. No changes were made."
         exit 0 # Exit with a successful status since this was just a dry run
     fi
