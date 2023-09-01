@@ -12,7 +12,7 @@ PASSWORD="${PASSWORD}"
 target_branch=${GIT_BRANCH}
 echo "Target branch is: ${target_branch}"
 
-if [ "${dry_run}" = "yes" ]; then
+if [ "${dry_run}" = "Yes" ]; then
     echo "Dry run is enabled. Listing files in the Autosys folder:"
     
     # List files in the Autosys folder
