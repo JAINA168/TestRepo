@@ -26,16 +26,17 @@ pipeline {
                 steps{
                     script{
                         // Call unix.groovy passing parameters
-                    def unixParams = [
-                        src: unix_src_path_scripts,
-                        dest: unix_deploy_path_scripts,
-                        server: unix_server,
-                        service_account: unix_service_account,
-                        permissions: unix_permission,
-                        dry_run: params.dry_run // Pass the dry_run parameter
-                    ]
+                    	def unixParams = [
+                        	src: unix_src_path_scripts,
+                        	dest: unix_deploy_path_scripts,
+                        	server: unix_server,
+                        	service_account: unix_service_account,
+                        	permissions: unix_permission,
+                        	dry_run: params.dry_run // Pass the dry_run parameter
+                    	]
 
-                    load "unix.groovy", unixParams
+                    	load "unix.groovy", unixParams
+			deployToUnix(unixParams)
                         }
                 }
         }
