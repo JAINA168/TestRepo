@@ -21,7 +21,7 @@ for jilFile in ${jilFiles}; do
     echo "Processing file: ${jilFile}"
     if [ "${dry_run}" = Yes ]; then
         echo "Dry run completed. No changes were made."
-        exit 0 # Exit with a successful status since this was just a dry run
+        #exit 0 # Exit with a successful status since this was just a dry run
     fi
     if [ "${target_branch}" = "test" ]; then
         # Replace string in the JIL file for the "test" branch
