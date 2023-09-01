@@ -26,7 +26,7 @@ pipeline {
                 steps{
                     script{
                         // Call unix.groovy passing parameters
-                    	def deployToUnix = load "path/to/unix.groovy"
+                    	def deployToUnix = load "unix.groovy"
                     	deployToUnix(
                         	src: unix_src_path_scripts,
                         	dest: unix_deploy_path_scripts,
