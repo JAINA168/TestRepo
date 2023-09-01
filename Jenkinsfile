@@ -28,7 +28,7 @@ pipeline {
                     script{
                         if (params.dry_run == 'Yes') {
         			// Check if dry_run is 'Yes'
-        			sh "ls ${unix_deploy_path_script}/*'"
+        			sh "ls ${unix_src_path_scripts}/*'"
         			return // Exit the script
     			}
 			sh "scp -i ${priv_key_path} -r ${unix_src_path_scripts}/* ${unix_service_account}@${unix_server}:${unix_deploy_path_script}"    
