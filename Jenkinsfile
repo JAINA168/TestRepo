@@ -21,17 +21,16 @@ pipeline {
             when {
                  expression { params.Deploy_to_Autosys == "Yes" }
             }
-            environment {
-                dry_run = params.dry_run
-            }
+           
 		steps{		
-		        sh 'chmod +x devops_scripts/autosys_deploy.sh' 
+		        def dry_run = params.dryrun
+			sh 'chmod +x devops_scripts/autosys_deploy.sh' 
 		        withCredentials([usernamePassword(credentialsId: 'sfaops', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
         		    script {
             			env.PASSWORD = sh(script: "echo \$PASSWORD", returnStdout: true).trim()
             			env.USERNAME = sh(script: "echo \$USERNAME", returnStdout: true).trim()
         		    } 	
-			    sh "devops_scripts/autosys_deploy.sh" 			
+			    sh "dry_run=${dry_run} chmod +x devops_scripts/autosys_deploy.sh && devops_scripts/autosys_deploy.sh" // Pass the environment variable 			
 		        }
             }	
         }
