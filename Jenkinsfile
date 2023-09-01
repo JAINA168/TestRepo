@@ -7,7 +7,7 @@ pipeline {
 	jilDirectory='autosys/'
 	autosys_apiEndpoint='https://amraelp00011055.pfizer.com:9443/AEWS/jil'
 	unix_server = "amrvopsfa000001"
-        unix_src_path_scripts = "autosys/"
+        unix_src_path_scripts = "autosys"
         unix_deploy_path_scripts = "/tmp"
         unix_service_account = "srvamr-palign@amer"
         unix_permission = "775"
@@ -28,7 +28,7 @@ pipeline {
                     script{
                         if (params.dry_run == 'Yes') {
         			// Check if dry_run is 'Yes'
-        			sh "ls ${unix_src_path_scripts}/*"
+        			sh "ls ${unix_src_path_scripts}"
         			return // Exit the script
     			}
 			sh "scp -i ${priv_key_path} -r ${unix_src_path_scripts}/* ${unix_service_account}@${unix_server}:${unix_deploy_path_script}"    
