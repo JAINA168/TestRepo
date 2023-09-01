@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def call(Map config) {
+def deployToUnix(Map config) {
     println "Deploying code into Unix environment"
     println config.src
     println config.dest
