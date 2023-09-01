@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def deployToUnix(src, dest, server, service_account, permissions, dry_run) {
+def deployToUnix(Map config) {
     println "Deploying code into Unix environment"
     println config.src
     println config.dest
