@@ -23,14 +23,13 @@ pipeline {
             }
            
 		steps{		
-		        def dry_run = params.dryrun
-			sh 'chmod +x devops_scripts/autosys_deploy.sh' 
+		        sh 'chmod +x devops_scripts/autosys_deploy.sh' 
 		        withCredentials([usernamePassword(credentialsId: 'sfaops', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
         		    script {
             			env.PASSWORD = sh(script: "echo \$PASSWORD", returnStdout: true).trim()
             			env.USERNAME = sh(script: "echo \$USERNAME", returnStdout: true).trim()
         		    } 	
-			    sh "dry_run=${dry_run} chmod +x devops_scripts/autosys_deploy.sh && devops_scripts/autosys_deploy.sh" // Pass the environment variable 			
+			    sh 'devops_scripts/autosys_deploy.sh ${params.dry_run}' // Pass the params			
 		        }
             }	
         }
