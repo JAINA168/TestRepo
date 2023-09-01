@@ -11,6 +11,7 @@ pipeline {
         unix_deploy_path_scripts = "/tmp"
         unix_service_account = "srvamr-palign@amer"
         unix_permission = "775"
+	priv_key_path = "/var/lib/jenkins/.ssh/palign_id_rsa"    
     }
     parameters {
         choice choices: ['No', 'Yes'], description: 'Mention if You want to Deploy into Autosys Environment', name: 'Deploy_to_Autosys'
@@ -25,17 +26,13 @@ pipeline {
             }
                 steps{
                     script{
-                        // Call unix.groovy passing parameters
-                    	def deployToUnix = load "unix.groovy"
-                    	deployToUnix(
-                        	src: unix_src_path_scripts,
-                        	dest: unix_deploy_path_scripts,
-                        	server: unix_server,
-                        	service_account: unix_service_account,
-                        	permissions: unix_permission,
-                        	dry_run: params.dry_run // Pass the dry_run parameter
-                    )
-                        }
+                        if (params.dry_run == 'Yes') {
+        			// Check if dry_run is 'Yes'
+        			sh "ls ${unix_deploy_path_script}/*'"
+        			return // Exit the script
+    			}
+			sh "scp -i ${priv_key_path} -r ${unix_src_path_scripts}/* ${unix_service_account}@${unix_server}:${unix_deploy_path_script}"    
+                     }
                 }
         }
         
