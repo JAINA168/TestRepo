@@ -35,7 +35,7 @@ pipeline {
                         	dry_run: params.dry_run // Pass the dry_run parameter
                     	]
 
-                    	load "unix.groovy", unixParams
+                    	load "unix.groovy"
 			deployToUnix(unixParams)
                         }
                 }
