@@ -3,8 +3,8 @@
 failedFiles=() # Array to store failed JIL files
 successfulFiles=() # Array to store successful JIL files
 
-#dry_run= "${params.dry_run}"
-echo "Dry run is: "${params.dry_run}""
+dry_run= "${params.dry_run}"
+echo "Dry run is: ${params.dry_run}"
 USERNAME="${USERNAME}"
 PASSWORD="${PASSWORD}"
 
