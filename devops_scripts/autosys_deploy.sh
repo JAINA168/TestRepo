@@ -12,7 +12,7 @@ target_branch=${GIT_BRANCH}
 echo "Target branch is: ${target_branch}"
 
 if [ "${dry_run}" = "Yes" ]; then
-    echo "Dry run is enabled. Listing files in the Autosys folder:"
+    echo "Dry run is enabled. Below are the changesets for Autosys deployment:"
     
     # List files in the Autosys folder
     files_in_autosys_folder=$(find "${jilDirectory}" -name '*.jil')
