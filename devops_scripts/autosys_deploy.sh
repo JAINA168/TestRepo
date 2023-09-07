@@ -4,8 +4,8 @@ failedFiles=() # Array to store failed JIL files
 successfulFiles=() # Array to store successful JIL files
 
 # Access the dry_run parameter as the first command-line argument ($1)
-dry_run="${params.dry_run}"
-echo "Dry run is: ${dry_run}"
+#dry_run="${params.dry_run}"
+echo "Dry run is: {params.dry_run}"
 USERNAME="${USERNAME}"
 PASSWORD="${PASSWORD}"
 
