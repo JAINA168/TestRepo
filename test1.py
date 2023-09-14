@@ -1,2 +1,7 @@
-curl -u "SRVAMR-SFAOPS:<your_account_password_here>" -k -X <GET/POST> https://amraelp00011055.pfizer.com:9443/AEWS/<proper_webservices_call_from_vendor_docs>
-
+            Job Parameters:
+            Deploy_to_PostgreSQL: ${params.Deploy_to_PostgreSQL}
+            Deploy_to_Unix: ${params.Deploy_to_Unix}
+            Deploy_to_Autosys: ${params.Deploy_to_Autosys}
+            dry_run: ${params.dry_run}
+            Email_Alert: ${params.Email_Alert}
+            Notify_to: ${params.Notify_to}
