@@ -1,2 +1,2 @@
-def projectNameSegments = currentBuild.fullProjectName.split('/')
-def technology = projectNameSegments[-1]
+DL-PfizerAlign-Support-GLOBAL-L3@pfizer.com,
+DL-PfizerAlign-Support-L2-US@pfizer.com
