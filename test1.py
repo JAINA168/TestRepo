@@ -5,65 +5,33 @@ import java.util.UUID
 
 def call(Map config){
     if ((env.BRANCH_NAME != 'dev') || (config.Email_Alert == 'Yes')){
-        
+        sub = " $currentBuild.result - $currentBuild.fullProjectName Jenkins Job"
         //recp = config.Notify_to
         def requestId = generateRequestID()
         def projectNameSegments = currentBuild.fullProjectName.split('/')
-        def environment = projectNameSegments[-1]
-        def project = projectNameSegments[-3:-2]
         def pod_name = projectNameSegments[-2]
-        def initiator = env.BUILD_TRIGGER_BY
-        sub = " '$pod_name' in environment '$environment'- $currentBuild.result "
+        def initiator = env.USER 
         recp = 'cc:$DEFAULT_RECIPIENTS,' + config.Notify_to
         msg = """
             <html>
             <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px;">
               <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <h3 style="color: #007bff;">The Jenkins Deployment Job $env.JOB_NAME is $currentBuild.result</h3>
-                <h3>Pod Name: $pod_name</h3>
-                <h3>Job Parameters:</h3>
-                <table border="1">
-                    <tr>
-                        <th>Parameter Name</th>
-                        <th>Value</th>
-                    </tr>
-                    ${getParametersTable()}
-                </table>
+                <h2 style="color: #007bff;">The Jenkins Deployment Job $env.JOB_NAME is $currentBuild.result</h2>
+                
                 <hr/>
                 
                 <h3>Build Information:</h3>
-                <table border="1">
-                    <tr>
-                        <th>Information</th>
-                        <th>Value</th>
-                    </tr>
-                    <tr>
-                        <td>Build URL</td>
-                        <td><a href="$env.BUILD_URL">$env.BUILD_URL</a></td>
-                    </tr>
-                    <tr>
-                        <td>Build Result</td>
-                        <td>$currentBuild.result</td>
-                    </tr>
-                    <tr>
-                        <td>Github URL</td>
-                        <td><a href="$env.GIT_URL">$env.GIT_URL</a></td>
-                    </tr>
-                    <tr>
-                        <td>Github Branch</td>
-                        <td>$env.BRANCH_NAME</td>
-                    </tr>
-                    <tr>
-                        <td>Deployment Requested By</td>
-                        <td>$initiator</td>
-                    </tr>
-                    <tr>
-                        <td>Deployment Request Id</td>
-                        <td>$requestId</td>
-                    </tr>
+                <table border="1" style="background-color: #ffffff; border-collapse: collapse; width: 100%;">
+                    <!-- ... (previous rows) ... -->
                 </table>
                 
                 <hr/>
+
+                <h3 style="background-color: #ffffff;">Pod Name: $pod_name</h3>
+                <h3>Job Parameters:</h3>
+                <table border="1" style="background-color: #ffffff; border-collapse: collapse; width: 100%;">
+                    <!-- ... (previous rows) ... -->
+                </table>
                 
                 <hr/>
                 
@@ -100,18 +68,7 @@ def call(Map config){
 
     }
 }
-def getParametersTable() {
-    def parameterTable = ""
-    params.keySet().each { paramName ->
-        parameterTable += """
-            <tr>
-                <td>$paramName</td>
-                <td>${params[paramName]}</td>
-            </tr>
-        """
-    }
-    return parameterTable
-}
+
 // Generate unique request ID with prefix "DR"
 def generateRequestID() {
     def prefix = "DR"
