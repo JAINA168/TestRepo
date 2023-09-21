@@ -6,11 +6,11 @@ pipeline {
     stages{
         stage ("Deploy to Unix"){
           steps{
-             wrap([$class: 'BuildUser']) {
-                GET_BUILD_USER = sh ( script: 'echo "${BUILD_USER}"', returnStdout: true).trim()
+             //wrap([$class: 'BuildUser']) {
+                //GET_BUILD_USER = sh ( script: 'echo "${BUILD_USER}"', returnStdout: true).trim()
                 echo "build user : ${BUILD_USER}"
                 echo "get build user : $GET_BUILD_USER"
-            }
+            //}
                 }
         }
         }
