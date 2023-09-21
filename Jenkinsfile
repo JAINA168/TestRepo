@@ -5,10 +5,12 @@ pipeline {
     
     stages{
         stage ("Deploy to Unix"){
+            steps{
              wrap([$class: 'BuildUser']) {
                 GET_BUILD_USER = sh ( script: 'echo "${BUILD_USER}"', returnStdout: true).trim()
             }
                 }
+        }
         }
         
     post {
