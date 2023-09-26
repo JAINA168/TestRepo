@@ -8,7 +8,7 @@ pipeline {
           steps{
              //wrap([$class: 'BuildUser']) {
                 //GET_BUILD_USER = sh ( script: 'echo "${BUILD_USER}"', returnStdout: true).trim()
-                echo "current build : ${currentBuild.fullProjectName}"
+                echo "current build : ${currentBuild.buildUser}"
                 //echo "get build user id : ${env.BUILD_USER_ID}"
                 //echo "get user id : ${env.USER}"
               
