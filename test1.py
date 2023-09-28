@@ -1,37 +1,94 @@
-            <html>
-            <body style="font-family: Arial, sans-serif; background-color: #fff; padding: 20px;">
-              <div style="background-color: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                <table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100.0%;border-collapse:collapse">
-					<tbody>
-					<tr>
-						<td width="27%" style="width:27.0%;background:white;padding:0in 0in 0in=0in">
-						<p class="MsoNormal">
-							<span style="color:black">
-							<img border="0" width="150" height="65" style="max-width:100%; height:auto;" id="Picture_x0020_1"src="https://team.design/wp-content/uploads/2022/08/03_Pfizer_Logo.png" alt="Pfizer Logo">
-							</span>
-							<o:p></o:p>
-						</p>
-						</td>
-						<td width="46%" style="width:46.0%;background:white;padding:0in 3.0pt 0=in 4.5pt">
-						  
-							<b>
-							<span style="font-size:14.0pt;font-family:'Helvetica',sans-serif;color:black">Jenkins Deployment </span>
-							</b>
-							<b>
-							<span style="font-size:14.0pt;font-family:'Helvetica',sans-serif">
-								<o:p></o:p>
-							</span>
-							</b>
-						  
-						</td>
-             					<td width="27%" style="width:27.0%;background:white;padding:0in 0in 0in=0in">
-              						<p class="MsoNormal">
-                						<span style="color:black;">
-                  							<img border="0" width="100" height="50" style="max-width:100%; height:auto;" id="Picture_x0020_2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Jenkins_logo_with_title.svg/1280px-Jenkins_logo_with_title.svg.png" alt="Jenkins Logo">
-               							 </span>
-                						<o:p></o:p>
-              						</p>
-            					</td>
-					</tr>
-					</tbody>
-				</table>
+          <tr style=3D"height:3.0pt">
+            <td style=3D"padding:0in 0in 0in 0in;height:3.0pt"></td>
+            <td style=3D"padding:0in 0in 0in 0in;height:3.0pt"></td>
+            <td style=3D"padding:0in 0in 0in 0in;height:3.0pt"></td>
+          </tr>
+          <tr style=3D"height:8.0pt">
+            <td style=3D"background:white;padding:0in 0in 0in 0in;height:8.0pt"></td>
+            <td style=3D"background:white;padding:0in 0in 0in 0in;height:8.0pt"></td>
+            <td style=3D"background:white;padding:0in 0in 0in 0in;height:8.0pt"></td>
+          </tr>
+          <tr>
+            <td style=3D"background:#002596;padding:6.0pt 6.0pt 6.0pt 6.0pt">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <span s=tyle=3D"color:white">
+                  <img border=3D"0" width=3D"32" height=3D"28" style=3D"=width:.3333in;height:.2916in" id=3D"Picture_x0020_2" src=3D"cid:what_fya.pn=g">
+                </span>
+                <o:p></o:p>
+              </p>
+            </td>
+            <td style=3D"background:#002596;padding:6.0pt 6.0pt 6.0pt 6.0pt">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <span s=tyle=3D"color:white">
+                  <img border=3D"0" width=3D"51" height=3D"30" style=3D"=width:.5312in;height:.3125in" id=3D"Picture_x0020_3" src=3D"cid:who.png">
+                  </= span>
+                  <o:p></o:p>
+              </p>
+            </td>
+            <td style=3D"background:#002596;padding:6.0pt 6.0pt 6.0pt 6.0pt">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <span s=tyle=3D"color:white">
+                  <img border=3D"0" width=3D"28" height=3D"32" style=3D"=width:.2916in;height:.3333in" id=3D"Picture_x0020_4" src=3D"cid:when.png">
+                  <= /span>
+                    <o:p></o:p>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style=3D"background:#002596;padding:0in 0in 6.0pt 0in">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <b>
+                  <spa= n style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=white">What <o:p></o:p>
+                    </span>
+                </b>
+              </p>
+            </td>
+            <td style=3D"background:#002596;padding:0in 0in 6.0pt 0in">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <b>
+                  <spa= n style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=white">Who <o:p></o:p>
+                    </span>
+                </b>
+              </p>
+            </td>
+            <td style=3D"background:#002596;padding:0in 0in 6.0pt 0in">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <b>
+                  <spa= n style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=white">When <o:p></o:p>
+                    </span>
+                </b>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style=3D"padding:6.0pt 0in 6.0pt 0in">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <b>
+                  <spa= n style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=#002596">FOR YOUR AWARENESS:Confluence | SSO Service Upgrade <o:p></o:p>
+                    </sp= an>
+                </b>
+              </p>
+            </td>
+            <td style=3D"padding:0in 0in 0in 0in">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <b>
+                  <spa= n style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=#002596">All Confluence Consumers <o:p></o:p>
+                    </span>
+                </b>
+              </p>
+            </td>
+            <td style=3D"padding:0in 0in 0in 0in">
+              <p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center">
+                <b>
+                  <spa= n style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=#002596">Friday September 22 6.00 PM - Sunday September 24 8.00 PM ET <o:p>
+                      <= /o:p>
+                        </span>
+                </b>
+              </p>
+            </td>
+          </tr>
+          <tr style=3D"height:6.0pt">
+            <td style=3D"background:#002596;padding:0in 0in 0in 0in;height:6.0pt"></td>
+            <td style=3D"background:#002596;padding:0in 0in 0in 0in;height:6.0pt"></td>
+            <td style=3D"background:#002596;padding:0in 0in 0in 0in;height:6.0pt"></td>
+          </tr>
