@@ -1,33 +1,9 @@
-<table style="width: 100%; border-collapse: collapse;">
-    <tr>
-        <td style="vertical-align: top; width: 50%; padding-right: 10px;">
-
-            <!-- Job Parameters Table -->
-            <h3>Job Parameters:</h3>
-            <table border="1" cellpadding="5" cellspacing="0" style="background-color: #e6f3fa; border-collapse: collapse; width: 100%;">
-                <tr>
-                    <th style="width: 150px;">Parameter Name</th>
-                    <th>Value</th>
-                </tr>
-                ${getParametersTable()}
-            </table>
-        </td>
-        <td style="vertical-align: top; width: 50%; padding-left: 10px;">
-
-            <!-- Build Information Table -->
-            <h3>Build Information:</h3>
-            <table border="1" cellpadding="5" cellspacing="0" style="background-color: #e6f3fa; border-collapse: collapse; width: 100%;">
-                <tr>
-                    <th>Information</th>
-                    <th>Value</th>
-                </tr>
-                <tr>
-                    <td>Build URL</td>
-                    <td><a href="$env.BUILD_URL">$env.BUILD_URL</a></td>
-                </tr>
-                <tr>
-                    <td>Build Result</td>
-                    <td>$currentBuild.result</td>
-                </tr>
-                <!-- Add more rows as needed -->
-            </table>
+<div style="text-align: left; margin-top: 20px;">
+    <p>
+        For further queries, please reach out to <a href='mailto:hemapriya.m@pfizer.com'>hemapriya.m@pfizer.com</a>.
+    </p>
+    <p>
+        Thanks,<br/>
+        SFA DevOps Team
+    </p>
+</div>
