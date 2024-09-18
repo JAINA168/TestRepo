@@ -295,3 +295,170 @@ Sources
 [5] How to create reusable infrastructure with Terraform modules https://blog.gruntwork.io/how-to-create-reusable-infrastructure-with-terraform-modules-25526d65f73d?gi=fb941e0f14e9
 [6] 20 Terraform Best Practices to Improve your TF workflow https://spacelift.io/blog/terraform-best-practices
 [7] Using Providers and Modules from the Private Registry https://developer.hashicorp.com/terraform/cloud-docs/registry/using
+
+
+Here is how you can organize your Terraform code across two repositories: one for the module and another for the source code that calls the module.
+
+## Module Repository
+
+This repository contains the Terraform module that defines the S3 bucket and its configurations.
+
+### `variables.tf`
+
+```hcl
+variable "bucket_name" {
+  description = "The name of the S3 bucket"
+  type        = string
+}
+
+variable "versioning_enabled" {
+  description = "Enable versioning for the S3 bucket"
+  type        = bool
+  default     = false
+}
+
+variable "lifecycle_rules" {
+  description = "Lifecycle rules for the S3 bucket"
+  type = list(object({
+    id             = string
+    prefix         = string
+    enabled        = bool
+    expiration_days = number
+  }))
+  default = []
+}
+
+variable "tags" {
+  description = "Tags to apply to the S3 bucket"
+  type        = map(string)
+  default     = {}
+}
+```
+
+### `main.tf`
+
+```hcl
+resource "aws_s3_bucket" "this" {
+  bucket = var.bucket_name
+  tags   = var.tags
+}
+
+resource "aws_s3_bucket_versioning" "this" {
+  bucket = aws_s3_bucket.this.id
+
+  versioning_configuration {
+    status = var.versioning_enabled ? "Enabled" : "Suspended"
+  }
+}
+
+resource "aws_s3_bucket_lifecycle_configuration" "this" {
+  bucket = aws_s3_bucket.this.id
+
+  dynamic "rule" {
+    for_each = var.lifecycle_rules
+    content {
+      id     = rule.value.id
+      filter {
+        prefix = rule.value.prefix
+      }
+      status  = rule.value.enabled ? "Enabled" : "Disabled"
+
+      expiration {
+        days = rule.value.expiration_days
+      }
+    }
+  }
+}
+```
+
+### `outputs.tf`
+
+```hcl
+output "s3_bucket_name" {
+  description = "The name of the S3 bucket created by the module"
+  value       = aws_s3_bucket.this.bucket
+}
+
+output "s3_bucket_arn" {
+  description = "The ARN of the S3 bucket"
+  value       = aws_s3_bucket.this.arn
+}
+
+output "s3_bucket_domain_name" {
+  description = "The domain name of the S3 bucket"
+  value       = aws_s3_bucket.this.bucket_domain_name
+}
+
+output "s3_bucket_regional_domain_name" {
+  description = "The regional domain name of the S3 bucket"
+  value       = aws_s3_bucket.this.bucket_regional_domain_name
+}
+
+output "s3_bucket_versioning_enabled" {
+  description = "Whether versioning is enabled on the S3 bucket"
+  value       = aws_s3_bucket_versioning.this.versioning_configuration.status == "Enabled"
+}
+```
+
+## Source Repository
+
+This repository calls the module from the module repository and provides specific values for its variables.
+
+### `variables.tf`
+
+```hcl
+variable "bucket_name" {
+  description = "The name of the S3 bucket"
+  type        = string
+}
+
+variable "versioning_enabled" {
+  description = "Enable versioning for the S3 bucket"
+  type        = bool
+}
+
+variable "lifecycle_rules" {
+  description = "Lifecycle rules for the S3 bucket"
+  type = list(object({
+    id             = string
+    prefix         = string
+    enabled        = bool
+    expiration_days = number
+  }))
+}
+
+variable "tags" {
+  description = "Tags to apply to the S3 bucket"
+  type        = map(string)
+}
+```
+
+### `main.tf`
+
+```hcl
+module "s3_bucket" {
+  source              = "git::https://github.com/your-organization/terraform-s3-module.git//path/to/module?ref=tag_or_branch"
+
+  bucket_name         = var.bucket_name
+  versioning_enabled  = var.versioning_enabled
+  lifecycle_rules     = var.lifecycle_rules
+  tags                = var.tags
+}
+```
+
+### `outputs.tf`
+
+```hcl
+output "bucket_name" {
+  value       = module.s3_bucket.s3_bucket_name
+}
+
+output "bucket_arn" {
+  value       = module.s3_bucket.s3_bucket_arn
+}
+```
+
+This setup allows you to separate your infrastructure logic (in the module) from your specific configurations (in the source repository), making it easier to maintain and reuse your Terraform code.
+
+Sources
+
