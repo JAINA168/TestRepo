@@ -1,5 +1,10 @@
+variable "repo_name" {
+  description = "The name of the ECR repository"
+  type        = string
+}
+
 resource "aws_ecr_repository" "main" {
-  name                 = "cuspf-sfa-serverless-repl-ecr-repo-prd"
+  name                 = var.repo_name
   image_tag_mutability = "MUTABLE"
   encryption_configuration {
     encryption_type = "AES256"
