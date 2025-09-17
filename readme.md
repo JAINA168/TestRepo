@@ -7,11 +7,11 @@ The project key for SonarQube should be extracted from the SonarQube UI (`sonar.
 - After selecting the project, the **Project Key** will be displayed in the project overview/dashboard or within the project settings.
 - Copy the project key (for example: `pfizer_sfdi-devops-tools-infra`).
 #### Process
-> To configure SonarQube scan at the pull request level for the GitHub repository:
+> To configure SonarQube scan for the GitHub repository:
 >
 > - Retrieve the project key directly from SonarQube (`sonar.pfizer.com`).  
 >   Recommended navigation: Projects → Select your project → Project Settings → Project Key.
->   Example: `"sonar.projectKey=pfizer_sfdi-devops-tools-infra"`[4][5].
+>   Example: `"sonar.projectKey=pfizer_sfdi-devops-tools-infra"`.
 > - Add the project key in your repository’s root `sonar-project.properties` file:
 >   ```
 >   sonar.projectKey=pfizer_sfdi-devops-tools-infra
