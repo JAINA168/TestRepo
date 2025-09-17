@@ -18,7 +18,6 @@ The project key for SonarQube should be extracted from the SonarQube UI (`sonar.
 >   ```
 > - Make sure the `.github/workflows/sonarqube.yml` refers to this key as needed by your workflow or scanner.
 #### 3. Update `.github/workflows/sonarqube.yml`
-- Edit the workflow file to include the project key and point to the correct secrets.
 - Example snippet to include in your workflow:
  ```yaml
  name: SonarQube Scan with custom action
