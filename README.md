@@ -1,318 +1,291 @@
-Perfect 👍 — here’s your final Confluence-ready page with Liquibase formatted SQL output section added (copy-paste directly).
+Got it 👍 — here’s your final, clean, summarized Confluence page including everything we built so far:
+
+* Config-driven extraction
+* Stored procedures
+* SA-based execution
+* Extract table
+* File generation
+* Liquibase format
+* GitHub Actions
+
+👉 Optimized for developer usage (execution-focused, not deep logic)
 
 ⸻
 
-📘 DDL/DML Extraction – Developer Execution Guide
+📘 DDL-DML Extraction using Stored Procs & GitHub Actions
 
 ⸻
 
 🔷 Overview
 
-{panel:title=Overview|borderStyle=solid|borderColor=#ccc|bgColor=#F4F5F7}
-This guide helps developers to:
+This solution enables developers to:
 
-* Execute extraction using Sub Area (SA)
-* Retrieve generated SQL
-* Generate SQL files
+* Extract DDL & DML using Sub Area (SA)
+* Use config-driven approach (no code change)
+* Generate SQL / Liquibase-ready files
 * Push output to GitHub (manual / automated)
-* Generate Liquibase-ready SQL files
-    {panel}
 
 ⸻
 
-🔷 Prerequisites
+🔷 End-to-End Flow
 
-{panel:title=Prerequisites|borderStyle=dashed|borderColor=#ccc}
-
-* Snowflake access (execute permission)
-* Database & schema access
-* Python installed
-* GitHub repo access
-    {panel}
+Config (DML_DDL_CONFIG_DTLS)
+        ↓
+Extraction Stored Procedure
+        ↓
+Extract Table (DML_DDL_EXTRACT_DTLS)
+        ↓
+Python File Generator
+        ↓
+Liquibase SQL Files
+        ↓
+GitHub (Manual / Actions)
 
 ⸻
 
-🔷 Step 1: Provide Sub Area (SA)
+🔷 Key Components
 
-{expand:title=Click to see examples}
+⸻
+
+🔹 1. Config Table
+
+DML_DDL_CONFIG_DTLS
+
+Purpose
+
+* Defines what to extract (tables, DML objects, etc.)
+* Fully drives extraction logic
+
+Developer Role
+
+* Add/remove entries when needed
+* No change in stored procedure
+
+⸻
+
+🔹 2. Config Setup Procedure (Optional)
+
+POPULATE_DML_DDL_CONFIG_DTLS
+
+Usage
+
+CALL POPULATE_DML_DDL_CONFIG_DTLS();
+
+When to Use
+
+* Initial setup
+* New schema onboarding
+
+⸻
+
+🔹 3. Extraction Stored Procedure
+
+POPULATE_DML_DDL_EXTRACT_MERGED
+
+Purpose
+
+* Reads config
+* Filters by SA
+* Generates SQL into extract table
+
+⸻
+
+🔹 4. Extract Table
+
+DML_DDL_EXTRACT_DTLS
+
+Contains
+
+* SA_INPUT
+* OBJECT_NAME
+* TYPE (DDL/DML)
+* GENERATED SQL
+
+⸻
+
+🔷 Developer Execution Steps
+
+⸻
+
+🔹 Step 1: Provide SA Input
 
 Single SA
-{code:sql}
-CALL POPULATE_DML_DDL_EXTRACT_MERGED(‘CUSTOMER’, …);
-{code}
+
+CALL POPULATE_DML_DDL_EXTRACT_MERGED('CUSTOMER', ...);
 
 Multiple SA
-{code:sql}
-CALL POPULATE_DML_DDL_EXTRACT_MERGED(‘CUSTOMER,PRODUCT’, …);
-{code}
 
-Only provided SAs will be processed
+CALL POPULATE_DML_DDL_EXTRACT_MERGED('CUSTOMER,PRODUCT', ...);
 
-{expand}
+✔ Only given SA will be processed
 
 ⸻
 
-🔷 Step 2: Execute Stored Procedure
+🔹 Step 2: Execute Extraction
 
-{code:sql}
 CALL POPULATE_DML_DDL_EXTRACT_MERGED(
-‘CUSTOMER,PRODUCT’,
-‘<SRC_DB>’,
-‘<SRC_SCHEMA>’,
-‘<TGT_DB>’,
-‘<TGT_SCHEMA>’,
-‘<EXTRACT_DB>’,
-‘<EXTRACT_SCHEMA>’,
-‘DML_DDL_CONFIG_DTLS’
+   'CUSTOMER,PRODUCT',
+   '<SRC_DB>',
+   '<SRC_SCHEMA>',
+   '<TGT_DB>',
+   '<TGT_SCHEMA>',
+   '<EXTRACT_DB>',
+   '<EXTRACT_SCHEMA>',
+   'DML_DDL_CONFIG_DTLS'
 );
-{code}
 
 ⸻
 
-🔷 Step 3: Verify Extracted Data
+🔹 Step 3: Validate Extract Data
 
-{expand:title=Query Extract Table}
-
-{code:sql}
 SELECT *
 FROM DML_DDL_EXTRACT_DTLS
-WHERE SA_INPUT IN (‘CUSTOMER’,‘PRODUCT’);
-{code}
+WHERE SA_INPUT IN ('CUSTOMER','PRODUCT');
 
-Expected Output
-
-|| SA_INPUT || OBJECT_NAME || TYPE || QUERY ||
-| CUSTOMER | ETL_PARAM_DTLS | DML | INSERT SQL |
-| PRODUCT  | ETL_INBOUND_DTLS | DML | INSERT SQL |
-
-Each row = one SQL file content
-
-{expand}
+✔ Ensure data exists before file generation
 
 ⸻
 
-🔷 Step 4: Generate SQL Files
+🔹 Step 4: Generate SQL Files
 
-{panel:title=Run Python Script|bgColor=#E3FCEF}
-{code:bash}
 python generate_sql_files.py
-{code}
-{panel}
 
 ⸻
 
-🔹 Output Structure
+🔹 Step 5: Push to GitHub
 
-{code:bash}
-snowflake/
-├── ddl/
-├── dml/
-{code}
-
-⸻
-
-🔷 🔥 Liquibase Formatted Output (NEW)
-
-⸻
-
-{panel:title=Liquibase Support|bgColor=#EAE6FF}
-All generated SQL files are automatically formatted for Liquibase execution.
-{panel}
-
-⸻
-
-🔹 File Naming Convention
-
-{code}
-.sql
-{code}
-
-Example:
-{code}
-01_emea_customer_dml_etl_param_dtls.sql
-{code}
-
-⸻
-
-🔹 Liquibase File Format
-
-Each file follows this structure:
-
-{code:sql}
-– liquibase formatted sql
-
-– changeset cicd:customer_etl_param_dtls_1
-– comment: DML for CUSTOMER - ETL_PARAM_DTLS
-
-INSERT INTO ETL_PARAM_DTLS (…)
-SELECT …
-;
-
-– changeset cicd:customer_etl_param_dtls_2
-– comment: Additional data
-
-INSERT INTO ETL_PARAM_DTLS (…)
-SELECT …
-;
-{code}
-
-⸻
-
-🔹 Key Standards Implemented
-
-{panel:title=Standards Applied|bgColor=#FFF4E5}
-
-* Author is always: cicd
-* No duplicate changesets
-* No extra blank spaces
-* Proper SQL formatting (readable like normal SQL)
-* Full object names used (no short forms)
-* One file per object per SA
-    {panel}
-
-⸻
-
-🔹 Changeset Naming Rule
-
-{code}
-cicd:
-{code}
-
-Example:
-{code}
-cicd:customer_etl_param_dtls_1
-cicd:customer_etl_param_dtls_2
-{code}
-
-⸻
-
-🔹 Folder Separation
-
-{code:bash}
-snowflake/
-├── ddl/
-│    ├── customer_tables.sql
-│    ├── customer_views.sql
-│
-├── dml/
-│    ├── customer_etl_param_dtls.sql
-│    ├── customer_etl_inbound_dtls.sql
-{code}
-
-⸻
-
-🔷 Step 5: Push to GitHub (Manual)
-
-{code:bash}
 git add .
-git commit -m “DDL DML extraction for CUSTOMER, PRODUCT”
+git commit -m "DDL DML extraction"
 git push
-{code}
 
 ⸻
 
-🔷 Step 6: GitHub Actions (Automated)
+🔷 Liquibase Output (Standardized)
 
-{expand:title=Run via GitHub UI}
+⸻
 
-1. Open repository
-2. Go to Actions
-3. Select DDL DML Extraction
-4. Click Run Workflow
-5. Enter:
+🔹 Format
 
-{code}
+-- liquibase formatted sql
+-- changeset cicd:customer_etl_param_dtls_1
+-- comment: DML for CUSTOMER - ETL_PARAM_DTLS
+INSERT INTO ETL_PARAM_DTLS (...)
+SELECT ...
+;
+
+⸻
+
+🔹 Rules Implemented
+
+* Author → cicd
+* Full object names (no short forms)
+* One file per object per SA
+* Sequential changesets
+* Clean SQL (regex formatted)
+
+⸻
+
+🔹 File Naming
+
+<sequence>_<sa>_<type>_<object>.sql
+
+Example
+
+01_customer_dml_etl_param_dtls.sql
+
+⸻
+
+🔷 Output Structure
+
+snowflake/
+ ├── ddl/
+ ├── dml/
+ │    ├── customer_etl_param_dtls.sql
+ │    ├── customer_etl_inbound_dtls.sql
+
+⸻
+
+🔷 GitHub Actions (Automation)
+
+⸻
+
+🔹 Trigger Steps
+
+1. Go to GitHub → Actions
+2. Select workflow
+3. Click Run Workflow
+4. Enter:
+
 CUSTOMER,PRODUCT
-{code}
-
-{expand}
 
 ⸻
 
 🔹 Pipeline Flow
 
-{panel:title=Execution Flow|bgColor=#DEEBFF}
-Trigger Workflow
-↓
-Execute Stored Procedure
-↓
+Input SA
+   ↓
+Run Stored Proc
+   ↓
 Populate Extract Table
-↓
-Generate Liquibase SQL Files
-↓
+   ↓
+Generate SQL Files
+   ↓
 Commit & Push to GitHub
-{panel}
-
-⸻
-
-🔷 Final Output in Repository
-
-{code:bash}
-repo/
-├── snowflake/
-│    ├── ddl/
-│    ├── dml/
-{code}
 
 ⸻
 
 🔷 Important Guidelines
 
-{panel:title=Important|bgColor=#FFF4E5}
-
-* Always provide SA input
+* Always pass SA input
 * Use comma-separated values for multiple SA
-* Do not leave SA empty
-* Verify extract table before generating files
-* Do not manually edit generated Liquibase changesets
-    {panel}
+* Do not modify stored procedures
+* Update config for new objects
+* Validate extract table before generating files
 
 ⸻
 
 🔷 Troubleshooting
 
-{expand:title=Common Issues & Fixes}
+⸻
 
-No Data Generated
-{code:sql}
+🔸 No Data Generated
+
 SELECT * FROM DML_DDL_CONFIG_DTLS;
-{code}
 
-Incorrect Data
+⸻
+
+🔸 Wrong Data
 
 * Check SA input
-* Verify SA names
-
-Duplicate Changesets
-
-* Ensure sequence logic is not reset in script
-
-Formatting Issues
-
-* Ensure latest regex formatter is used
-
-{expand}
+* Validate config entries
 
 ⸻
 
-🔷 Quick Flow
+🔸 Empty SQL Files
 
-{panel:title=Summary|bgColor=#F4F5F7}
-Provide SA → Execute Procedure → Verify Extract Table → Generate Liquibase SQL → Push to GitHub
-{panel}
+SELECT COUNT(*) FROM DML_DDL_EXTRACT_DTLS;
 
 ⸻
 
-✅ Now this includes:
+🔷 Final Summary
 
-* Confluence macros
-* Execution steps
-* Liquibase-ready output
-* Naming + formatting standards
+Config decides WHAT
+Procedure decides WHEN
+Script decides FORMAT
+Git decides WHERE
 
 ⸻
 
-If you want next upgrade, I can:
-🚀 ￼ Add master changelog.xml auto-generation
-🚀 ￼ Add Liquibase deploy command section
-🚀 ￼ Add rollback scripts generation
+✅ This is now:
+
+* Fully structured
+* Covers everything you implemented
+* Developer-friendly
+* Confluence-ready (new editor compatible)
+
+⸻
+
+If you want next level:
+🚀 Add diagram image for Confluence
+🚀 Add actual GitHub Actions YAML
+🚀 Add Python script (final version)
